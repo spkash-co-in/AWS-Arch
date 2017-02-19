@@ -25,6 +25,8 @@ We will try and explore AWS services available to come up with an architecture t
 ## AWS Mobile Hub
 AWS Mobile Hub service provides a significant value to organizations willing to enter the mobility space. Lets explore the multiple services that we can leverage to satisfy out start-up and have them on their way to their fantabulous app.
 
+![Mobile Hub](https://github.com/spkash-co-in/AWS-Arch/blob/master/awsMobileHub.JPG)
+
 ### Auto-generate Mobile iOS/Android code
 1. AWS Mobile Hub can be used to auto generate client side SDK
 2. AWS Mobile Hub auto-creates cloud side Cognito Identity Pools & IAM roles/policies
@@ -33,8 +35,8 @@ AWS Mobile Hub service provides a significant value to organizations willing to 
  * User Data Storage
  * App Analytics
  * Push Notifications
-![AWS Mobile Hub ]( https://github.com/spkash-co-in/AWS-Arch/blob/master/spkash-co-in%20AWS%20MobileHub.JPG)
 
+![SDKs](https://github.com/spkash-co-in/AWS-Arch/blob/master/supportedSDKs.JPG)
 
 
 
@@ -47,6 +49,8 @@ AWS Mobile Hub service provides a significant value to organizations willing to 
 2. Cognito User Pools can be used as Identity Authentication provider
 3. Optionally Facebook/Twitter/Google/SAML can be used
 (Table 3 - User Sign-in Identity Provider)
+
+![3rdParty](https://github.com/spkash-co-in/AWS-Arch/blob/master/3rdParty.JPG)
 
 ## Registering users
 1. Send Registration request
@@ -117,11 +121,11 @@ Assuming the startup is using a LAMP stack, it can be wrapped inside the Elastic
 ## Route 53
 ### Disaster Recovery Policy
 Depending on the start-up need and budget differt DR policies may be explored. Depending on client needs and RTO+ RPO requirements options range from
-1. Multi-site deploy in multiple regions active load servicing 
+* Multi-site deploy in multiple regions active load servicing 
   * Multi-site deploy, Route 53 DNS failover over
-2. Warm standby
+* Warm standby
   * Options available like API Gateway -> CloudWatch Metrics -> Alarms -> Lambda -> CloudFormation execute
-3. Pilot
+* Pilot
   * Consider RDS backups, restore from snapshots, Read replica 
 
 ## S3 and Glacier
@@ -145,6 +149,10 @@ Learning about your customer base usage patterns provides significant insight in
 2. Embedding code on select code points, options for Custom events to gather user usage. 
 3. Dashboards in AWS Mobile Analytics for all major data points 
 4. Option  to stream analytics data to AWS Kinesis for more finetuned analysis, Tableau, Machine 
+
+![Mobile Analytics](https://github.com/spkash-co-in/AWS-Arch/blob/master/mobileAnalytics.JPG)
+
+![Export Analytics](https://github.com/spkash-co-in/AWS-Arch/blob/master/exportAnalytics.JPG)
 
 ## CloudWatch, AWS Lambda, CloudFormation
 ### Support services
