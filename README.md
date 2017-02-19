@@ -67,3 +67,95 @@ AWS Mobile Hub service provides a significant value to organizations willing to 
 
 ## Cognito Sync 
 ### User Cloud sync across devices
+By selecting On for Generate Cognito Sync option in User Data Storage section in AWS Mobile Hub the generated SDK provides simple Key/Value based cloud sync option to client. 
+With just a few lines of code this function can be achieved.
+1. CongitoSyncManager
+2. Dataset.put
+3. Dataset.syncrhonize
+
+## API Gateway
+### Making the API request from mobile 
+1. Sigv4 signed requests with AWS Credentials 
+2. API Gateway verifies authorization for requested resources 
+3. Allow on successful authorization
+4. Exchange IAM credentials for user JWT
+
+## Elastic Bean Stalk
+### Autoscaling and Loadbalancing requests to server app
+Assuming the startup is using a LAMP stack, it can be wrapped inside the Elastic Bean Stalk and capability-added to scale for demand. Moreover multiple environments dev/test/stage/prod can be spinned up easily creating a wholesome environment for the dev team to start cranking. And with the multiple deployment options available the devOps team is in for a treat as well.
+1. Elastic Bean stalk can be used to create an App name with PHP platform 
+2. Provide zip file or use  eb cli 
+3. Elastic Bean stalk provides easy option for creating multiple environments (Dev, Test, Stage, Prod etc) 
+4. Clone environments with simple mouse click 
+5. Deployment policies can be selected as well 
+6. Multi-AZ  Auto-scaling can be selected by mentioning Azs by name Cross-Zone ELB can be used for even load distribution 
+7. Some configuration options listed below 
+  * Autoscaling
+    * Min/Max instances 
+    * Placement Azs 
+    * Scaling Trigger -CPU/Reqs metrics 
+    * Auto scaling Health Check 
+  * Application Deployment policy
+    * Rolling w/additional batch
+    * Batch size 
+  * High-Availability 
+    * ELB
+    * HTTP/HTTPS SSL 
+    * Cross Zone 
+    * Connection 
+    * ELB Health Check
+  * Environment Properties 
+    * External RDS settings
+
+## Amazon RDS
+### Highly Available Database Service
+1. Master-Standby synchronous replication 
+2. Read replicas as needed -asynchronous replication 
+3. Automated backups Snapshots option
+4. Choose Multi-AZ and make it highly available
+
+## Route 53
+### Disaster Recovery Policy
+Depending on the start-up need and budget differt DR policies may be explored. Depending on client needs and RTO+ RPO requirements options range from
+1. Multi-site deploy in multiple regions active load servicing 
+  * Multi-site deploy, Route 53 DNS failover over
+2. Warm standby
+  * Options available like API Gateway -> CloudWatch Metrics -> Alarms -> Lambda -> CloudFormation execute
+3. Pilot
+  * Consider RDS backups, restore from snapshots, Read replica 
+
+## S3 and Glacier
+### Archiving
+1. Store objects in S3
+2. Auto-rollover to cheaper Glacier for long-term archiving
+3. Note the retrievl time differnce between S3 and Glacier and choose 
+
+## SNS 
+### Push Notifications to mobile app
+Sending  notifications to better match mobile user needs forms a significant piece that the organization has to handle. SNS make this much simpler to implement.
+1. Notifications to consumer (Pub/Sub)
+2. Direct + Topic Publish, simple one-line code 
+3. Options like APNS+GCM+ADM gateways for Push available 
+4. SMS / Email also
+
+## AWS Mobile Analytics
+## Analytics on your customer base
+Learning about your customer base usage patterns provides significant insight into the business areas that are protifable and those which needs attention. AWS Mobile Analytics make its very easy to gather stats.
+1. AWS Mobile Hub generates SDK which pushes events to AWS Mobile Analytics service for mobile related analytics data
+2. Embedding code on select code points, options for Custom events to gather user usage. 
+3. Dashboards in AWS Mobile Analytics for all major data points 
+4. Option  to stream analytics data to AWS Kinesis for more finetuned analysis, Tableau, Machine 
+
+## CloudWatch, AWS Lambda, CloudFormation
+### Support services
+Monitoring continuously and reacting to events or alarms keeps the infrastructure in top-shape. The above mentioned services combined together help achieve this goal.
+1. Publish logs to Cloudwatch User Cloudwatch metrics to create Alarms 
+2. Trigger some Lambda on alarm 
+3. Lambda can execute CloudFormation template and take corrective action
+
+
+
+
+
+
+    
