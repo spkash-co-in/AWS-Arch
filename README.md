@@ -87,6 +87,7 @@ With just a few lines of code this function can be achieved.
 ## Elastic Bean Stalk
 ### Autoscaling and Loadbalancing requests to server app
 Assuming the startup is using a LAMP stack, it can be wrapped inside the Elastic Bean Stalk and capability-added to scale for demand. Moreover multiple environments dev/test/stage/prod can be spinned up easily creating a wholesome environment for the dev team to start cranking. And with the multiple deployment options available the devOps team is in for a treat as well.
+
 1. Elastic Bean stalk can be used to create an App name with PHP platform 
 2. Provide zip file or use  eb cli 
 3. Elastic Bean stalk provides easy option for creating multiple environments (Dev, Test, Stage, Prod etc) 
@@ -137,6 +138,7 @@ Depending on the start-up need and budget differt DR policies may be explored. D
 ## SNS 
 ### Push Notifications to mobile app
 Sending  notifications to better match mobile user needs forms a significant piece that the organization has to handle. SNS make this much simpler to implement.
+
 1. Notifications to consumer (Pub/Sub)
 2. Direct + Topic Publish, simple one-line code 
 3. Options like APNS+GCM+ADM gateways for Push available 
@@ -145,6 +147,7 @@ Sending  notifications to better match mobile user needs forms a significant pie
 ## AWS Mobile Analytics
 ## Analytics on your customer base
 Learning about your customer base usage patterns provides significant insight into the business areas that are protifable and those which needs attention. AWS Mobile Analytics make its very easy to gather stats.
+
 1. AWS Mobile Hub generates SDK which pushes events to AWS Mobile Analytics service for mobile related analytics data
 2. Embedding code on select code points, options for Custom events to gather user usage. 
 3. Dashboards in AWS Mobile Analytics for all major data points 
