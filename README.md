@@ -15,7 +15,7 @@ A laundry list of the start-up's requirements would be
 * Replicate and manage multiple environments for dev team to work on
 
 ## Architecture Diagram
-We will try and explore AWS services available to come up with an architecture that will satisfy our start-up's needs.
+We will try and explore AWS services available to come up with an architecture that will satisfy our start-up needs.
 
 ![Architecture Diagram](https://github.com/spkash-co-in/AWS-Arch/blob/master/spkash-co-in%20AWS%20Arch.jpg)
 
@@ -48,18 +48,21 @@ AWS Mobile Hub service provides a significant value to organizations willing to 
 1. Cognito Fully Managed User Directory can be used to create users (Standard+custom Attributes available)
 2. Cognito User Pools can be used as Identity Authentication provider
 3. Optionally Facebook/Twitter/Google/SAML can be used
-(Table 3 - User Sign-in Identity Provider)
+
 
 ![3rdParty](https://github.com/spkash-co-in/AWS-Arch/blob/master/3rdParty.JPG)
 
 ## Registering users
+Get User Registration functionality out-of-the-box. Standard registration process to sign-in new users is made very simple to use by AWS Mobile Hub.
+
 1. Send Registration request
 2. SMS/Email verification
 3. Confirm registration
 4. Successful registration
-(Table 1 - Register, Sign-in)
+
 
 ## Sign-in
+User sign-in, Multi-Factor Authentication and session tokens are also provided out-of-the-box. The following options available for the Sign-in, authentication - authorization 
 1. Authenticate (SRP)
 2. Optional - CAPTCHA, custom 2FA
 3. JWT Tokens ( Id+Access+Refresh)
@@ -73,9 +76,16 @@ AWS Mobile Hub service provides a significant value to organizations willing to 
 ### User Cloud sync across devices
 By selecting On for Generate Cognito Sync option in User Data Storage section in AWS Mobile Hub the generated SDK provides simple Key/Value based cloud sync option to client. 
 With just a few lines of code this function can be achieved.
-1. CongitoSyncManager
-2. Dataset.put
-3. Dataset.syncrhonize
+
+### Get the Cognito Sync Manager
+`CongitoSyncManager`
+
+### Use put api to update data
+`Dataset.put`
+
+### Use synchronize api to keep all devices in snyc
+`Dataset.syncrhonize`
+
 
 ## API Gateway
 ### Making the API request from mobile 
@@ -144,6 +154,31 @@ Sending  notifications to better match mobile user needs forms a significant pie
 3. Options like APNS+GCM+ADM gateways for Push available 
 4. SMS / Email also
 
+### SNS Topic 
+Reach millions of subscribers in a scalable manner. Use 3 simple steps to fan out your messages to millions of subscribers. Let SNS do the heavy-lifting. 
+
+### Step 1. Create a topic
+`CreateTopicRequest`
+### Step 2. Create one or many subscriptions
+`SubscrubeRequest(ARN)`
+### Step 3. Publish to topic
+`PublishRequest`
+
+![SNS Topic](https://github.com/spkash-co-in/AWS-Arch/blob/master/SNS-Topicpulbish.JPG)
+
+### SNS Direct
+Target individual mobile devices using the Direct publish mode in SNS.
+
+### Step 1. Create a platform app
+`CreatePlatformApplicationRequest`
+### Step 2 Create and endpoint with the token provided by platform for specific device
+`CreatePlatformEndpointRequest`
+### Step 3. Publish to your endpoint
+`PublishRequest`
+
+
+![SNS Direct](https://github.com/spkash-co-in/AWS-Arch/blob/master/SNS-Directpulbish.JPG)
+
 ## AWS Mobile Analytics
 ## Analytics on your customer base
 Learning about your customer base usage patterns provides significant insight into the business areas that are protifable and those which needs attention. AWS Mobile Analytics make its very easy to gather stats.
@@ -151,7 +186,7 @@ Learning about your customer base usage patterns provides significant insight in
 1. AWS Mobile Hub generates SDK which pushes events to AWS Mobile Analytics service for mobile related analytics data
 2. Embedding code on select code points, options for Custom events to gather user usage. 
 3. Dashboards in AWS Mobile Analytics for all major data points 
-4. Option  to stream analytics data to AWS Kinesis for more finetuned analysis, Tableau, Machine 
+4. Option  to stream analytics data to AWS Kinesis for more fine-tuned analysis, Tableau, Machine 
 
 ![Mobile Analytics](https://github.com/spkash-co-in/AWS-Arch/blob/master/mobileAnalytics.JPG)
 
