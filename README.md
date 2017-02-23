@@ -13,6 +13,13 @@ A laundry list of the start-up's requirements would be
 * Distribute load effectively against server infrastructure
 * Self-healing infrastructure that recovers from failed instances
 * Replicate and manage multiple environments for dev team to work on
+* Establish a Disaster Recovery policy for the organization
+* Secure data in transit and rest
+* Scale/configure DB and data access for throughput and high-performance
+* Archival/retrival strategy of cold data
+* Elastic, self-healing and scaling architecture that handles traffic spikes with ease
+* Ability to gather usage metrics and patterns and perform analytics
+
 
 ## Architecture Diagram
 We will try and explore AWS services available to come up with an architecture that will satisfy our start-up needs.
@@ -87,6 +94,54 @@ With just a few lines of code this function can be achieved.
 `Dataset.syncrhonize`
 
 
+## SNS 
+### Push Notifications to mobile app
+Sending  notifications to better match mobile user needs forms a significant piece that the organization has to handle. SNS make this much simpler to implement.
+
+1. Notifications to consumer (Pub/Sub)
+2. Direct + Topic Publish, simple one-line code 
+3. Options like APNS+GCM+ADM gateways for Push available 
+4. SMS / Email also
+
+### SNS Topic 
+Reach millions of subscribers in a scalable manner. Use 3 simple steps to fan out your messages to millions of subscribers. Let SNS do the heavy-lifting. 
+
+### Step 1. Create a topic
+`CreateTopicRequest`
+### Step 2. Create one or many subscriptions
+`SubscrubeRequest(ARN)`
+### Step 3. Publish to topic
+`PublishRequest`
+
+![SNS Topic](https://github.com/spkash-co-in/AWS-Arch/blob/master/SNS-Topicpulbish.JPG)
+
+### SNS Direct
+Target individual mobile devices using the Direct publish mode in SNS.
+
+### Step 1. Create a platform app
+`CreatePlatformApplicationRequest`
+### Step 2 Create and endpoint with the token provided by platform for specific device
+`CreatePlatformEndpointRequest`
+### Step 3. Publish to your endpoint
+`PublishRequest`
+
+
+![SNS Direct](https://github.com/spkash-co-in/AWS-Arch/blob/master/SNS-Directpulbish.JPG)
+
+## AWS Mobile Analytics
+## Analytics on your customer base
+Learning about your customer base usage patterns provides significant insight into the business areas that are protifable and those which needs attention. AWS Mobile Analytics make its very easy to gather stats.
+
+1. AWS Mobile Hub generates SDK which pushes events to AWS Mobile Analytics service for mobile related analytics data
+2. Embedding code on select code points, options for Custom events to gather user usage. 
+3. Dashboards in AWS Mobile Analytics for all major data points 
+4. Option  to stream analytics data to AWS Kinesis for more fine-tuned analysis using tools like Tableau, and Machine-learning to predict patterns. 
+
+![Mobile Analytics](https://github.com/spkash-co-in/AWS-Arch/blob/master/mobileAnalytics.JPG)
+
+![Export Analytics](https://github.com/spkash-co-in/AWS-Arch/blob/master/exportAnalytics.JPG)
+
+
 ## API Gateway
 ### Making the API request from mobile 
 1. Sigv4 signed requests with AWS Credentials 
@@ -144,53 +199,6 @@ Depending on the start-up need and budget differt DR policies may be explored. D
 1. Store objects in S3
 2. Auto-rollover to cheaper Glacier for long-term archiving
 3. Note the retrievl time differnce between S3 and Glacier and choose 
-
-## SNS 
-### Push Notifications to mobile app
-Sending  notifications to better match mobile user needs forms a significant piece that the organization has to handle. SNS make this much simpler to implement.
-
-1. Notifications to consumer (Pub/Sub)
-2. Direct + Topic Publish, simple one-line code 
-3. Options like APNS+GCM+ADM gateways for Push available 
-4. SMS / Email also
-
-### SNS Topic 
-Reach millions of subscribers in a scalable manner. Use 3 simple steps to fan out your messages to millions of subscribers. Let SNS do the heavy-lifting. 
-
-### Step 1. Create a topic
-`CreateTopicRequest`
-### Step 2. Create one or many subscriptions
-`SubscrubeRequest(ARN)`
-### Step 3. Publish to topic
-`PublishRequest`
-
-![SNS Topic](https://github.com/spkash-co-in/AWS-Arch/blob/master/SNS-Topicpulbish.JPG)
-
-### SNS Direct
-Target individual mobile devices using the Direct publish mode in SNS.
-
-### Step 1. Create a platform app
-`CreatePlatformApplicationRequest`
-### Step 2 Create and endpoint with the token provided by platform for specific device
-`CreatePlatformEndpointRequest`
-### Step 3. Publish to your endpoint
-`PublishRequest`
-
-
-![SNS Direct](https://github.com/spkash-co-in/AWS-Arch/blob/master/SNS-Directpulbish.JPG)
-
-## AWS Mobile Analytics
-## Analytics on your customer base
-Learning about your customer base usage patterns provides significant insight into the business areas that are protifable and those which needs attention. AWS Mobile Analytics make its very easy to gather stats.
-
-1. AWS Mobile Hub generates SDK which pushes events to AWS Mobile Analytics service for mobile related analytics data
-2. Embedding code on select code points, options for Custom events to gather user usage. 
-3. Dashboards in AWS Mobile Analytics for all major data points 
-4. Option  to stream analytics data to AWS Kinesis for more fine-tuned analysis, Tableau, Machine 
-
-![Mobile Analytics](https://github.com/spkash-co-in/AWS-Arch/blob/master/mobileAnalytics.JPG)
-
-![Export Analytics](https://github.com/spkash-co-in/AWS-Arch/blob/master/exportAnalytics.JPG)
 
 ## CloudWatch, AWS Lambda, CloudFormation
 ### Support services
